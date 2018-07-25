@@ -1,0 +1,18 @@
+{
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "us-west-2",
+    "source_ami": "ami-a9d09ed1",
+    "instance_type": "c3.xlarge",
+    "ssh_username": "ec2-user",
+    "ssh_timeout": "5m",
+    "ami_name": "rabbit-mq"
+  }],
+  "provisioners": [{
+    "type": "chef-solo",
+    "cookbook_paths": ["."],
+    "run_list": ["rabbitmq"],
+    "prevent_sudo": false,
+    "skip_install": false
+  }]
+}
